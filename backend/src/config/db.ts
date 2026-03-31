@@ -8,7 +8,8 @@ export const pool = new Pool({
   connectionString,
   max: 10,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 10000,
+  ssl: connectionString?.includes('neon.tech') ? { rejectUnauthorized: false } : undefined,
 });
 
 export async function testConnection(): Promise<void> {

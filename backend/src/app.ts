@@ -20,6 +20,9 @@ import { dashboardRouter } from './modules/dashboard/dashboard.routes';
 export function createApp() {
   const app = express();
 
+  // Trust proxy required for Fly.io load balancing headers (express-rate-limit)
+  app.set('trust proxy', 1);
+
   // Security headers
   app.use(helmet());
 
