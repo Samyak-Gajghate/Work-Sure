@@ -6,10 +6,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production=false
 
-# Copy source and build
+# Copy source, scripts, and build
 COPY tsconfig.json ./
 COPY src/ ./src/
+COPY scripts/ ./scripts/
 RUN npx tsc --noEmit && npm run build
+RUN npx tsc scripts/migrate.ts --esModuleInterop --skipLibCheck
 
 # ---- Runtime ----
 FROM node:20-alpine AS runtime
@@ -22,10 +24,10 @@ ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 
-# Copy compiled output + migrations
+# Copy compiled output, migrations, and compiled scripts
 COPY --from=builder /app/dist ./dist
 COPY migrations/ ./migrations/
-COPY scripts/ ./scripts/
+COPY --from=builder /app/scripts/ ./scripts/
 
 EXPOSE 3000
 

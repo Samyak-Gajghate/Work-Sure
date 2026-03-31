@@ -15,7 +15,10 @@ if (!connectionString) {
   process.exit(1);
 }
 
-const pool = new Pool({ connectionString });
+const pool = new Pool({
+  connectionString,
+  ssl: connectionString.includes('neon.tech') ? { rejectUnauthorized: false } : undefined
+});
 
 async function runMigrations() {
   const client = await pool.connect();

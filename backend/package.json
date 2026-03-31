@@ -11,6 +11,7 @@
     "test:unit": "jest --testPathPattern=tests/unit --runInBand",
     "test:integration": "jest --testPathPattern=tests/integration --runInBand",
     "migrate": "node -r ts-node/register scripts/migrate.ts",
+    "migrate:prod": "node scripts/migrate.js",
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
