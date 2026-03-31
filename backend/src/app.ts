@@ -29,7 +29,14 @@ export function createApp() {
   // CORS
   app.use(
     cors({
-      origin: env.FRONTEND_URL,
+      origin: (origin, callback) => {
+        // Allow if no origin (e.g. mobile apps, curl), matches FRONTEND_URL exactly, is a Vercel preview URL, or is local dev
+        if (!origin || origin === env.FRONTEND_URL || origin.endsWith('.vercel.app') || origin.startsWith('http://localhost:')) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],
     })
