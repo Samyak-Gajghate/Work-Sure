@@ -2,6 +2,9 @@
 
 A role-aware work management platform for small teams — a lightweight Jira/Asana alternative. Built with Node.js, Express, PostgreSQL, React, and TypeScript.
 
+🚀 **Live Demo:** [https://work-sure.vercel.app](https://work-sure.vercel.app)  
+*(Backend API hosted on Fly.io, Database on Neon Serverless Postgres)*
+
 ---
 
 ## Features
