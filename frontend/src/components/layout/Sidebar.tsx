@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, CheckSquare, ListTodo, Kanban,
-  Users, Bell, Settings, ChevronRight, Plus
+  Users, /*Bell,*/ Settings, ChevronRight, Plus
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Avatar } from '../ui/Avatar';
@@ -15,15 +15,15 @@ interface NavItem {
 }
 
 const MAIN_ITEMS: NavItem[] = [
-  { to: '/dashboard',          icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/tasks',              icon: ListTodo,         label: 'My Tasks'   },
-  { to: '/tasks?view=all',     icon: CheckSquare,      label: 'All Tasks', roles: ['Admin', 'Manager'] },
-  { to: '/board',              icon: Kanban,            label: 'Board',     roles: ['Admin', 'Manager'] },
+  { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/tasks', icon: ListTodo, label: 'My Tasks' },
+  { to: '/tasks?view=all', icon: CheckSquare, label: 'All Tasks', roles: ['Admin', 'Manager'] },
+  { to: '/board', icon: Kanban, label: 'Board', roles: ['Admin', 'Manager'] },
 ];
 
 const WORKSPACE_ITEMS: NavItem[] = [
-  { to: '/workspace/members',  icon: Users,    label: 'Members'  },
-  { to: '/settings',           icon: Settings, label: 'Settings', roles: ['Admin'] },
+  { to: '/workspace/members', icon: Users, label: 'Members' },
+  { to: '/settings', icon: Settings, label: 'Settings', roles: ['Admin'] },
 ];
 
 interface SidebarProps {
